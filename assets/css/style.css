@@ -1,6 +1,7 @@
 /* Importing fonts from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Merriweather:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* Root Colors */
 :root {
   /* Primary Colors */
@@ -24,7 +25,7 @@
   /* Text Colors */
   --charcoal-gray: #333333;
   /* Use for body text and paragraphs */
-  --light-gray: #B0B0B0;
+  --light-gray: #535353;
   /* Use for less important text or placeholders */
 }
 
@@ -58,6 +59,9 @@ body {
   background: var(--light-beige);
 }
 
+/* --------<<<<<>>>>-------- 
+  DEFAULT STYLING STARTS HERE  */
+
 h1,
 h2,
 h3,
@@ -72,11 +76,6 @@ button,
   font-family: 'Roboto', sans-serif;
 }
 
-
-@media screen and (max-width: 900px) {}
-
-/* ///// Default Styles ///// */
-
 h1 {
   text-align: center;
   font-size: 2rem;
@@ -87,26 +86,39 @@ h1 {
 }
 
 /* custom text highlights */
-span.highlight--theme {
+.highlight--theme {
   position: relative;
   display: inline-block;
+  z-index: 2;
+  color: gold;
 }
 
-span.highlight--theme::before {
+.highlight--theme::before {
   position: absolute;
-  left: 0;
   bottom: 0;
   width: 100%;
   height: 14px;
   transform: skew(-12deg);
-  background: var(--highlight--navy-blue);
-  z-index: -1;
+  background: lightgoldenrodyellow;
+  z-index: 1;
+  opacity: .5;
+  animation: underline-fill 4s ease-in-out infinite;
 }
 
-span.highlight--normal {
-  color: var(--tertiary);
-  font-style: italic;
-  text-decoration: underline;
+@keyframes underline-fill {
+  0% {
+    width: 0;
+    left: 0;
+  }
+
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+    right: 0;
+  }
 }
 
 p {
@@ -126,6 +138,7 @@ p {
   margin: 0 auto 30px auto;
   padding: 0 0 10px 0;
 }
+
 .section-heading::before {
   bottom: 0;
   left: 50%;
@@ -136,6 +149,7 @@ p {
   background: var(--muted-gold);
   border-radius: 50%;
 }
+
 .section-heading::after {
   bottom: -14px;
   left: 50%;
@@ -150,10 +164,10 @@ p {
 }
 
 h3 {
-color: var(--soft-blue);
-border-left: 5px solid var(--soft-blue);
-padding: 0 0 0 10px;
-margin: 0 0 15px 0;
+  color: var(--soft-blue);
+  border-left: 5px solid var(--soft-blue);
+  padding: 0 0 0 10px;
+  margin: 0 0 15px 0;
 }
 
 h4 {
@@ -185,16 +199,82 @@ img {
   object-fit: cover;
   display: block;
 }
+
 video {
   width: 100%;
   margin: 10px 0 10px 0;
 }
+
 section {
   padding: 80px 0;
   min-height: fit-content;
   overflow: hidden;
   scroll-snap-align: start;
 }
+
+button {
+  transform-style: preserve-3d;
+  padding: 10px 20px;
+  color: var(--navy-blue);
+  border: 1px solid var(--navy-blue);
+  border-radius: 4px;
+  cursor: pointer;
+  transform: rotateX(20deg);
+  transition: all 0.5s;
+  position: relative;
+  overflow: hidden;
+  font-weight: bolder;
+}
+
+button a {
+  color: var(--navy-blue);
+}
+
+button:hover {
+  color: white;
+  z-index: 1s;
+  border-color: var(--muted-gold);
+}
+
+button:hover a {
+  color: #fff;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background-color: var(--muted-gold);
+  top: 0;
+  left: -40px;
+  z-index: -1;
+  transform: skewX(45deg);
+  border-radius: 4px;
+  transition: all 1s;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  width: 10%;
+  filter: blur(7px);
+  height: 100%;
+  background-color: white;
+  top: 0;
+  left: -10px;
+  transition: all 0.9s linear;
+  transform: skewX(45deg);
+}
+
+button:hover::after {
+  transform: translateX(115px);
+}
+
+button:hover::before {
+  width: 200%;
+}
+
 
 .container {
   width: 90%;
@@ -204,20 +284,6 @@ section {
 .nav-container {
   max-width: 65%;
   margin: 0 auto;
-}
-
-button {
-  background: transparent;
-  outline: none;
-  border: 1px solid var(--deep-red);
-  color: var(--deep-red);
-  border-radius: 5px;
-  padding: 10px 20px;
-}
-
-button:hover{
-  background: var(--deep-red);
-  color: #fff;
 }
 
 @keyframes scaleUp {
@@ -520,26 +586,31 @@ nav.visible {
   }
 }
 
-/* Header section starts here */
-header{
+/* ---------<<<<<>>>>--------- 
+ HERO HEADER SECTION STARTS HERE  */
+ 
+header {
   height: 100vh;
   background: var(--navy-blue);
   position: relative;
   margin: 0 0 60px 0;
 }
-.header-info{
+
+.header-info {
   max-width: 90%;
   margin: 0 auto 0 auto;
   padding-top: 175px;
 }
-.header-info p{
+
+.header-info p {
   width: 70%;
   margin: 0 auto;
   text-align: center;
   color: var(--white);
   opacity: .8;
 }
-.header-scroll-image{
+
+.header-scroll-image {
   position: absolute;
   bottom: -30%;
   left: 50%;
@@ -550,29 +621,36 @@ header{
   place-items: center;
   background: linear-gradient(180deg, var(--navy-blue), var(--navy-blue) 40%, var(--light-beige));
 }
+
 .header-scroll-image img {
-  width: 60%;
+  width: 70%;
 }
+
 .action-buttons {
   display: flex;
   gap: 1rem;
 }
 
-/* about constitution section starts here */
+/* -------------<<<<<>>>>------------
+ ABOUT CONSTITUTION SECTION STARTS HERE  */
+ 
 #about-constitution {
   padding-top: 200px;
 }
+
 #about-constitution h3 {
   color: var(--muted-gold);
   border-color: var(--muted-gold);
 }
 
-.about-video video, article-holder video{
+.about-video video,
+article-holder video {
   width: 100%;
 }
 
-
-/* BLOG SECTION STARTS HERE - SLIDER */
+/* ----------<<<<<>>>>---------- 
+  WHAT TO READ SECTION STARTS HERE  */
+  
 #what-to-read {
   background: var(--deep-red);
 }
@@ -684,13 +762,11 @@ header{
 
 .card p {
   font-size: .9rem;
+  color: #D5D5D5;
 }
 
 .card button {
-  color: var(--tertiary);
-  border: none;
-  outline: none;
-  background: transparent;
+  margin: 10px 0 0 0;
 }
 
 @media screen and (max-width: 900px) {
@@ -705,47 +781,52 @@ header{
   }
 }
 
-
+/* -------------<<<<<>>>>-------------
+ WHY WE SHOULD LEARN SECTION STARTS HERE */
+ 
 #why-learn p {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 #why-learn .benefits {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 #why-learn .benefit-item {
-    flex: 1;
-    max-width: 300px;
-    margin: 10px;
-    background-color: var(--white);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    text-align:center;
+  flex: 1;
+  max-width: 300px;
+  margin: 10px;
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  text-align: center;
 }
 
 #why-learn .benefit-item:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
-.benefit-item img{
+
+.benefit-item img {
   margin: 0 auto 10px auto;
   width: 100px;
 }
 
 #why-learn .benefit-item h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: var(--primary);
-    border: none;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: var(--primary);
+  border: none;
 }
 
-
-/* BLOG POPUP */
-.popup, .quiz-poup {
+/* ---------<<<<<>>>>--------- 
+ POPUP FOR EACH BLOG STARTS HERE  */
+.popup,
+.quiz-poup {
   display: none;
   position: fixed;
   z-index: 1000;
@@ -764,12 +845,14 @@ header{
   opacity: 1;
 }
 
-.popup-content, .quiz-popup-conent{
+.popup-content,
+.quiz-popup-conent {
   background-color: #fff;
   margin: 0 auto;
   border: 1px solid #888;
   width: 100%;
   max-height: 100%;
+  height: 100%;
   position: relative;
   transform: scale(0.7);
   transition: transform 0.3s ease-in-out;
@@ -777,7 +860,8 @@ header{
   overflow-y: auto;
 }
 
-.popup-nav, .quiz-popup-nav{
+.popup-nav,
+.quiz-popup-nav {
   position: sticky;
   top: 0;
   left: 0;
@@ -792,7 +876,8 @@ header{
   z-index: 100;
 }
 
-.popup-nav p, .quiz-popup-nav p {
+.popup-nav p,
+.quiz-popup-nav p {
   color: #fff;
   font-weight: 600;
 }
@@ -806,15 +891,18 @@ header{
   padding: 0 20px 0 20px;
   margin: 20px 0 20px 0;
 }
-.article-holder ul{
+
+.article-holder ul {
   margin: 10px 0 10px 0;
 }
+
 .article-holder li {
   list-style-type: circle;
   margin: 5px 0 0px 30px;
   font-size: .9rem;
   color: var(--light-gray);
 }
+
 .article-holder h2 {
   font-size: 1.4rem;
   color: var(--navy-blue);
@@ -840,7 +928,8 @@ header{
   margin: 0 0 8px 0;
 }
 
-.popup-nav i, .quiz-popup-nav i {
+.popup-nav i,
+.quiz-popup-nav i {
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -850,51 +939,55 @@ header{
   color: #fff;
 }
 
-/* quiz code from the article */
+/*  -----------<<<<<>>>>----------- 
+  ARTICLE TEST QUIZ GAME STARTS HERE  */
+  
 #quiz-container {
-    max-width: 500px;
-    margin: 20px auto;
-    background-color: #DFE0E7;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 20px auto;
+  background-color: #DFE0E7;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .quiz-question p {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #333;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
 }
 
 .quiz-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .quiz-options div {
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-    border: 1px solid #ddd;
-    transition: background-color 0.3s ease;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s ease;
 }
 
 .quiz-options div:hover {
-    background-color: #e9ecef;
+  background-color: #e9ecef;
 }
 
 #quiz-score {
-    font-size: 1.2em;
-    margin-top: 20px;
-    text-align: center;
-    color: #28a745;
+  font-size: 1.2em;
+  margin-top: 20px;
+  text-align: center;
+  color: #28a745;
 }
 
-/* Games section starts here */
+/* --------<<<<<>>>>-------- 
+PLAY GAMES SECTION STARTS HERE  */
+
 #games-section .games-list {
   display: flex;
   flex-direction: column;
@@ -903,6 +996,7 @@ header{
   justify-content: center;
   width: 100%;
 }
+
 .game-card {
   width: 70%;
   text-align: center;
@@ -911,21 +1005,24 @@ header{
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(215, 184, 0, 0.33);
 }
+
 .game-card h3 {
   border: none;
   padding: 0;
   margin: 0 0 0 0;
   color: var(--navy-blue);
 }
-.game-card p{
+
+.game-card p {
   margin: 0 0 10px 0;
 }
+
 .game-holder {
   margin: 20px 0 0 0;
 }
 
-
-
+/* ----------<<<<<>>>>----------
+  HOME PAGE QUIZ GAME STARTS HERE  */
 .quiz-popup {
   position: fixed;
   top: 0;
@@ -937,10 +1034,12 @@ header{
   border-radius: 10px;
   z-index: 1000;
   display: none;
+  overflow: auto;
 }
 
 .quiz-popup-content {
   padding: 20px;
+  overflow-y: scroll;
 }
 
 .quiz-holder {
@@ -974,12 +1073,12 @@ header{
 }
 
 .quiz-option-correct {
-  background-color: #4caf50;
+  background-color: #4caf50 !important;
   color: white;
 }
 
 .quiz-option-incorrect {
-  background-color: #f44336;
+  background-color: #f44336 !important;
   color: white;
 }
 
@@ -1005,7 +1104,8 @@ header{
   margin-top: 20px;
 }
 
-/* Memory Game Styles */
+/* --------<<<<<>>>>-------- 
+    MEMORY GAME STARTS HERE  */
 .memory-game {
   display: flex;
   justify-content: center;
@@ -1015,18 +1115,22 @@ header{
 
 .memory-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Only 2 cards per row */
+  grid-template-columns: repeat(2, 1fr);
+  /* Only 2 cards per row */
   grid-gap: 15px;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .memory-card {
-  width: 120px;
-  height: 120px;
-  background-color: #f0f0f0; /* Default background color */
+  width: 110px;
+  height: 110px;
+  background-color: #f0f0f0;
+  /* Default background color */
   border-radius: 10px;
   position: relative;
   perspective: 1000px;
+  text-align: center;
+  font-size: .85rem;
 }
 
 .memory-card .card-inner {
@@ -1034,7 +1138,8 @@ header{
   height: 100%;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  transform: rotateY(0deg); /* Start with the back facing up */
+  transform: rotateY(0deg);
+  /* Start with the back facing up */
 }
 
 .memory-card.flipped .card-inner {
@@ -1054,39 +1159,49 @@ header{
 }
 
 .memory-card .card-front {
-  background-color: #4caf50; /* Green color for correct match */
+  background-color: #4caf50;
+  /* Green color for correct match */
   color: white;
   transform: rotateY(180deg);
 }
 
 .memory-card .card-back {
-  background-color: #3498db; /* Default color for card back */
+  background-color: #3498db;
+  /* Default color for card back */
   color: white;
+  font-size: 2rem;
 }
 
 .memory-card.matched .card-inner {
-  background-color: #27ae60; /* Green color when matched */
+  background-color: #27ae60;
+  /* Green color when matched */
 }
 
-
-
-
-
+/* --------<<<<<>>>>-------- 
+  MATCH PAIR GAME STARTS HERE  */
 .match-pair-container {
   display: flex;
   justify-content: space-between;
-  gap: 40px; /* Added spacing between the columns */
+  gap: 40px;
+  /* Added spacing between the columns */
   padding: 20px;
+}
+
+.game-introduction {
+  text-align: center;
+  margin: 20px 0 20px 0;
+  color: var(--soft-blue);
 }
 
 .match-pair-column {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Added spacing between items */
+  gap: 15px;
+  /* Added spacing between items */
 }
 
 .draggable-item-match-pair {
-  background-color: #f0f0f0;
+  background-color: #E4E3EF;
   padding: 15px;
   border-radius: 8px;
   text-align: center;
@@ -1095,9 +1210,11 @@ header{
 }
 
 .droppable-item-match-pair {
-  background-color: transparent; /* Transparent background */
+  background-color: transparent;
+  /* Transparent background */
   padding: 15px;
-  border: 2px solid #ccc; /* Border to differentiate */
+  border: 2px solid #ccc;
+  /* Border to differentiate */
   border-radius: 8px;
   text-align: center;
   transition: background-color 0.3s;
@@ -1105,7 +1222,8 @@ header{
 }
 
 .matched-item-match-pair {
-  background-color: #4caf50; /* Green for correct match */
+  background-color: #4caf50;
+  /* Green for correct match */
   color: white;
   pointer-events: none;
 }
@@ -1117,3 +1235,87 @@ header{
   text-align: center;
   margin-top: 15px;
 }
+
+.correct-match-background {
+  background-color: lightgreen;
+}
+
+.article-explanation {
+  width: 90%;
+  margin: 20px auto 0 auto;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+
+/* --------<<<<<>>>>-------- 
+   FAQ SECTION STARTS HERE  */
+
+.faq-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.faq-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.faq-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-item {
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #fff;
+  padding: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.faq-item:hover {
+  background-color: #f0f0f0;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-question h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.faq-toggle {
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+.faq-answer {
+  display: none;
+  padding-top: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+.faq-item.active .faq-toggle {
+  transform: rotate(45deg);
+  }
