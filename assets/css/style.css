@@ -626,6 +626,33 @@ header {
   width: 70%;
 }
 
+@media screen and (max-width: 1008px) {
+    .menuBtn {
+display: flex;
+  }
+}
+@media screen and (min-width: 768px) {
+.container {
+width: 80%%
+}
+
+  .about-video {
+display: flex;
+    aliiggn-items: center;
+    justify-content: center;
+  }
+  video {
+max-width: 50%;
+    margin : 0 atuo;
+  }
+  .header-info {
+  max-width: 55%;
+}
+  .header-scroll-image img {
+width: 25%;
+}
+}
+
 .action-buttons {
   display: flex;
   gap: 1rem;
